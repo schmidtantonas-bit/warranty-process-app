@@ -1,0 +1,97 @@
+<section class="step-work-processes">
+  <header class="step-work-processes__header">
+    <h2 class="step-work-processes__title">Schritt 3: Arbeitsablauf</h2>
+    <p class="step-work-processes__subtitle">Dokumentation der durchgeführten Arbeiten mit Foto und Zeitangabe.</p>
+  </header>
+
+  <section class="step-work-processes__timeline card card--pad-m">
+    <h3 class="step-work-processes__timeline-title">Erfasste Schritte</h3>
+
+    @for (step of wizardState.wizardData().workSteps; track step.id; let i = $index) {
+      <article class="step-work-processes__row">
+        <div class="step-work-processes__line-top">
+          <div class="step-work-processes__number">{{ i + 1 }}</div>
+          <input
+            class="step-work-processes__input step-work-processes__input--title"
+            type="text"
+            [value]="step.description"
+            (input)="updateDescription(step.id, $any($event.target).value)"
+          />
+          <div class="step-work-processes__time-box">
+            <label class="step-work-processes__label">Zeit (Min.)</label>
+            <input
+              class="step-work-processes__input step-work-processes__input--time"
+              type="number"
+              min="0"
+              [value]="step.timeSpentMinutes ?? ''"
+              (input)="updateDuration(step.id, $any($event.target).value)"
+            />
+          </div>
+        </div>
+
+        <div class="step-work-processes__line-bottom">
+          <label class="step-work-processes__photo-trigger" title="Foto hinzufügen">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 4.5h6l1 1.5H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l1-1.5Zm3 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+            </svg>
+            <input type="file" accept="image/*" (change)="onStepPhotoAdd($event, step.id)" />
+          </label>
+
+          <div class="step-work-processes__photos-strip">
+            @for (photo of step.photos; track photo; let idx = $index) {
+              <img class="step-work-processes__thumb" [src]="photo" [alt]="'Foto ' + (idx + 1)" />
+            }
+          </div>
+          <div class="step-work-processes__line-bottom-action">
+            <button type="button" class="btn btn--def btn--m" (click)="removeStep(step.id)">Löschen</button>
+          </div>
+        </div>
+      </article>
+    }
+
+    @if (wizardState.wizardData().workSteps.length === 0) {
+      <p class="step-work-processes__empty">Noch keine Schritte vorhanden. Bitte mindestens einen Schritt hinzufügen.</p>
+    }
+
+  </section>
+
+  <form [formGroup]="addForm" class="step-work-processes__composer card card--pad-m">
+    <article class="step-work-processes__row step-work-processes__row--editor">
+      <div class="step-work-processes__line-top">
+        <div class="step-work-processes__number">{{ wizardState.wizardData().workSteps.length + 1 }}</div>
+        <input
+          class="step-work-processes__input step-work-processes__input--title"
+          type="text"
+          formControlName="description"
+          placeholder="beschreibe was gemacht wurde"
+        />
+        <div class="step-work-processes__time-box">
+          <label class="step-work-processes__label">Zeit (Min.)</label>
+          <input class="step-work-processes__input step-work-processes__input--time" type="number" min="0" formControlName="timeSpentMinutes" />
+        </div>
+      </div>
+
+      <div class="step-work-processes__line-bottom">
+        <label class="step-work-processes__photo-trigger" title="Foto hinzufügen">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 4.5h6l1 1.5H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l1-1.5Zm3 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+          </svg>
+          <input type="file" accept="image/*" (change)="onPhotoSelected($event)" />
+        </label>
+
+        <div class="step-work-processes__photos-strip">
+          @for (photo of addForm.controls.photos.value; track photo; let idx = $index) {
+            <img class="step-work-processes__thumb" [src]="photo" [alt]="'Foto ' + (idx + 1)" />
+          }
+        </div>
+        <div class="step-work-processes__line-bottom-action"></div>
+      </div>
+    </article>
+
+    <button class="btn btn--primary btn--m" type="button" (click)="addStep()">+ Arbeitsschritt hinzufügen</button>
+
+    <p class="step-work-processes__total-time">
+      Gesamtzeit: {{ totalDurationMinutes() }} Min.
+    </p>
+  </form>
+</section>

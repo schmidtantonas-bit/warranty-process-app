@@ -1,0 +1,20 @@
+@use './app/styles/ui/button.scss';
+@use './app/styles/ui/card.scss';
+@use './app/styles/ui/textarea.scss';
+
+@import './app/styles/normalize.css';
+@import './app/styles/variables.css';
+@import './app/styles/theme.css';
+@import './app/styles/layout.css';
+@import './app/styles/globals.css';
+@import './app/styles/print.css';
+@import './app/styles/twemoji-flags.css';
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  max-width: none;
+}

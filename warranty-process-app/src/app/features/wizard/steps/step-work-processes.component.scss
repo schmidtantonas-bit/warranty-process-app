@@ -1,0 +1,224 @@
+.step-work-processes {
+  &__title {
+    margin: 0;
+    font-size: var(--text-h2);
+    line-height: var(--lh-tight);
+  }
+
+  &__subtitle {
+    margin-top: var(--space-2xs);
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+  }
+
+  &__composer,
+  &__timeline {
+    margin-top: var(--space-m);
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  &__timeline-title {
+    margin: 0;
+    font-size: var(--text-h3);
+  }
+
+  &__row {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--surface);
+
+    &--editor {
+      background: var(--surface-alt);
+    }
+  }
+
+  &__line-top {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 132px;
+    align-items: end;
+    gap: var(--space-s);
+  }
+
+  &__line-bottom {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) 132px;
+    align-items: end;
+    gap: var(--space-s);
+  }
+
+  &__number {
+    inline-size: 42px;
+    block-size: 42px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: var(--surface-alt);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--neo-outset);
+  }
+
+  &__label {
+    font-size: var(--text-label);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__input {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--space-s);
+    font-size: var(--text-body);
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: var(--neo-inset);
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--focus) 30%, white),
+        var(--neo-inset);
+    }
+
+    &--title {
+      inline-size: 100%;
+      min-block-size: 3rem;
+    }
+
+    &--time {
+      inline-size: 100%;
+      max-inline-size: 132px;
+      min-block-size: 2.75em;
+    }
+  }
+
+  &__photo-trigger {
+    inline-size: 56px;
+    block-size: 56px;
+    display: grid;
+    place-items: center;
+    align-self: end;
+    border-radius: 12px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    box-shadow: var(--neo-outset);
+    cursor: pointer;
+
+    svg {
+      inline-size: 24px;
+      block-size: 24px;
+      fill: var(--text-secondary);
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  &__photos-strip {
+    block-size: 56px;
+    min-block-size: 56px;
+    display: flex;
+    align-items: center;
+    align-self: end;
+    gap: var(--space-xs);
+    overflow-x: auto;
+    padding: 0 var(--space-2xs);
+    border-radius: var(--radius);
+    border: 1px dashed var(--border-color);
+    background: var(--surface-alt);
+  }
+
+  &__thumb {
+    inline-size: 56px;
+    block-size: 56px;
+    flex: 0 0 auto;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    background: var(--surface);
+  }
+
+  &__time-box {
+    display: grid;
+    gap: var(--space-2xs);
+    justify-items: end;
+    align-self: end;
+  }
+
+  &__line-bottom-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-block-size: 56px;
+
+    .btn {
+      inline-size: 132px;
+      min-block-size: 2.75em;
+      justify-content: center;
+    }
+  }
+
+  &__empty {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+  }
+
+  &__total-time {
+    margin: 0;
+    padding-top: var(--space-2xs);
+    border-top: 1px solid var(--border-color);
+    font-size: var(--text-s);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+  }
+}
+
+@media (max-width: 900px) {
+  .step-work-processes {
+    &__line-top {
+      grid-template-columns: 48px minmax(0, 1fr);
+      align-items: center;
+    }
+
+    &__line-bottom {
+      grid-template-columns: 56px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    &__time-box {
+      grid-column: 1 / -1;
+      justify-items: start;
+    }
+
+    &__line-bottom-action {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .step-work-processes {
+    &__line-top {
+      grid-template-columns: 1fr;
+    }
+
+    &__line-bottom {
+      grid-template-columns: 1fr;
+    }
+
+    &__photo-trigger {
+      inline-size: 56px;
+      block-size: 56px;
+    }
+  }
+}

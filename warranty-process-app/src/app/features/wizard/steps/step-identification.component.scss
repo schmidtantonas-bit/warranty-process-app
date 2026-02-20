@@ -1,0 +1,59 @@
+.step-identification {
+  &__title {
+    margin: 0;
+    font-size: var(--text-h2);
+    line-height: var(--lh-tight);
+  }
+
+  &__subtitle {
+    margin-top: var(--space-2xs);
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+  }
+
+  &__form {
+    margin-top: var(--space-m);
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &__field {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  &__label {
+    font-weight: 600;
+    font-size: var(--text-label);
+    color: var(--text-primary);
+  }
+
+  &__input {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--space-s);
+    inline-size: 100%;
+    min-block-size: 3rem;
+    font-size: var(--text-body);
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: var(--neo-inset);
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--focus) 30%, white),
+        var(--neo-inset);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .step-identification {
+    &__form {
+      grid-template-columns: 1fr;
+    }
+  }
+}

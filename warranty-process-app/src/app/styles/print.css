@@ -1,0 +1,25 @@
+@media print {
+  :root {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  body.print-protocol app-header,
+  body.print-protocol app-footer {
+    display: none !important;
+  }
+
+  body.print-protocol main[data-ui='layout-main'] {
+    padding: 0 !important;
+  }
+
+  body.print-protocol {
+    background: white !important;
+  }
+}
+

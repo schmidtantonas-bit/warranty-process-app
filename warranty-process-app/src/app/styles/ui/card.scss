@@ -1,0 +1,23 @@
+.card {
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--neo-outset);
+
+  &--flat {
+    box-shadow: none;
+  }
+
+  &--pad-none {
+    padding: 0;
+  }
+
+  &--pad-s {
+    padding: var(--space-s);
+  }
+
+  &--pad-m {
+    padding: var(--space-m);
+  }
+}
+

@@ -1,0 +1,14 @@
+<nav class="progress-bar" aria-label="Schrittfortschritt">
+  <div class="progress-bar__track"></div>
+
+  @for (step of steps; track step.number) {
+    <div
+      class="progress-bar__step"
+      [class.progress-bar__step--active]="step.number <= currentStep"
+      [attr.aria-current]="step.number === currentStep ? 'step' : null"
+    >
+      <div class="progress-bar__bubble">{{ step.number }}</div>
+      <div class="progress-bar__label">{{ step.title }}</div>
+    </div>
+  }
+</nav>

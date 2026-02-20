@@ -1,0 +1,36 @@
+/* Theme overrides (opt-in).
+   Apply on <body> or a top-level wrapper: e.g. <body class="theme-dark"> */
+
+.theme-dark {
+  --bg: #0f1117;
+  --fg: #f4f7ff;
+  --muted: #8c93a7;
+  --surface: #161b24;
+  --surface-alt: #1c222e;
+  --primary: #ff4545;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --shadow-light: rgba(255, 255, 255, 0.08);
+  --shadow-dark: rgba(0, 0, 0, 0.35);
+  --text-primary: var(--fg);
+  --text-secondary: var(--muted);
+  --text-inverse: #0f1117;
+  --text-on-primary: #ffffff;
+}
+
+.theme-contrast {
+  --bg: #ffffff;
+  --fg: #0b0b0f;
+  --muted: #353744;
+  --surface: #ffffff;
+  --surface-alt: #f0f2f7;
+  --primary: #1a4dff;
+  --border-color: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --shadow-light: rgba(255, 255, 255, 0.9);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --text-primary: var(--fg);
+  --text-secondary: var(--muted);
+  --text-inverse: #ffffff;
+  --text-on-primary: #ffffff;
+}

@@ -1,0 +1,60 @@
+<section class="step-problem-details">
+  <header class="step-problem-details__header">
+    <h2 class="step-problem-details__title">Schritt 2: Reklamiertes Bauteil</h2>
+    <p class="step-problem-details__subtitle">Erfassen Sie die Bauteildaten und den Fehler laut Formular.</p>
+  </header>
+
+  <form [formGroup]="form" class="step-problem-details__form">
+    <label class="step-problem-details__field">
+      <span class="step-problem-details__label">Teilename</span>
+      <input class="step-problem-details__input" type="text" formControlName="partName" placeholder="z. B. Wasserpumpe" />
+    </label>
+
+    <label class="step-problem-details__field">
+      <span class="step-problem-details__label">Fehlerbeschreibung</span>
+      <textarea
+        class="step-problem-details__textarea"
+        formControlName="failureDescription"
+        rows="4"
+        placeholder="Kurzbeschreibung des Fehlers und der Einsatzbedingungen"
+      ></textarea>
+    </label>
+  </form>
+
+  <section class="step-problem-details__photos">
+    <h3 class="step-problem-details__photos-title">Pflichtfotos</h3>
+
+    <div class="step-problem-details__photo-grid">
+      @for (item of requiredPhotos; track item.type) {
+        <label class="step-problem-details__photo-card">
+          @if (photoValue(item.type)) {
+            <img class="step-problem-details__photo-preview" [src]="photoValue(item.type)" [alt]="item.label" />
+          } @else {
+            <div class="step-problem-details__photo-placeholder">
+              <svg
+                class="step-problem-details__photo-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9 4.5h6l1 1.5H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l1-1.5Zm3 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+                />
+              </svg>
+            </div>
+          }
+
+          <div class="step-problem-details__photo-meta">
+            <strong class="step-problem-details__photo-title">{{ item.label }}</strong>
+            @if (photoValue(item.type)) {
+              <p class="step-problem-details__status step-problem-details__status--ok">Foto hinzugefügt</p>
+            } @else {
+              <p class="step-problem-details__status step-problem-details__status--missing">Foto fehlt</p>
+            }
+          </div>
+
+          <input type="file" accept="image/*" (change)="onPhotoSelected($event, item.type)" />
+        </label>
+      }
+    </div>
+  </section>
+</section>

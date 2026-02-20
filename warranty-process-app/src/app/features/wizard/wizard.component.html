@@ -1,0 +1,44 @@
+<section class="wizard container">
+  <article class="wizard__card card card--pad-m">
+    <header class="wizard__header">
+      <img src="assets/icons/Rosendauer-logo.svg" alt="Rosendauer" class="wizard__logo" />
+
+      <div class="wizard__brand-copy">
+        <h1 class="wizard__title">Reklamationsformular S9</h1>
+      </div>
+    </header>
+
+    <app-progress-bar [currentStep]="currentStep()"></app-progress-bar>
+
+    <section class="wizard__content">
+      @if (currentStep() === 1) {
+        <app-step-identification></app-step-identification>
+      }
+      @if (currentStep() === 2) {
+        <app-step-problem-details></app-step-problem-details>
+      }
+      @if (currentStep() === 3) {
+        <app-step-work-processes></app-step-work-processes>
+      }
+      @if (currentStep() === 4) {
+        <app-step-review-submit></app-step-review-submit>
+      }
+    </section>
+
+    <footer class="wizard__actions">
+      <button class="btn btn--ghost btn--m" type="button" (click)="previousStep()" [disabled]="currentStep() === 1">
+        Zurück
+      </button>
+      @if (currentStep() < 4) {
+        <button class="btn btn--primary btn--m" type="button" (click)="nextStep()" [disabled]="!canGoNext()">
+          Weiter
+        </button>
+      }
+      @if (currentStep() === 4) {
+        <button class="btn btn--ok btn--m" type="button" (click)="submit()">
+          Senden
+        </button>
+      }
+    </footer>
+  </article>
+</section>

@@ -1,0 +1,28 @@
+<section class="step-identification">
+  <header class="step-identification__header">
+    <h2 class="step-identification__title">Schritt 1: Grunddaten</h2>
+    <p class="step-identification__subtitle">Erfassen Sie die Basisdaten gemäß Reklamationsformular.</p>
+  </header>
+
+  <form [formGroup]="form" class="step-identification__form">
+    <label class="step-identification__field">
+      <span class="step-identification__label">Garantieantrag / WSC</span>
+      <input class="step-identification__input" type="text" formControlName="warrantyNumber" placeholder="z. B. W-2026-001" />
+    </label>
+
+    <label class="step-identification__field">
+      <span class="step-identification__label">Fahrzeugnummer</span>
+      <input class="step-identification__input" type="text" formControlName="vin" placeholder="z. B. 1HGBH41JXMN109186" />
+    </label>
+
+    <label class="step-identification__field">
+      <span class="step-identification__label">Servicetechniker</span>
+      <input class="step-identification__input" type="text" formControlName="technicianName" placeholder="Max Mustermann" />
+    </label>
+
+    <label class="step-identification__field">
+      <span class="step-identification__label">E-Mail des Technikers</span>
+      <input class="step-identification__input" type="email" formControlName="technicianEmail" placeholder="technik@example.com" />
+    </label>
+  </form>
+</section>

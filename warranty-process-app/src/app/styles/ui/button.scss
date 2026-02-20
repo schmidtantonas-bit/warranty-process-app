@@ -1,0 +1,125 @@
+/* Base button (global) */
+.btn {
+  --btn-pad-y: 0.55em;
+  --btn-pad-x: 1.1em;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: var(--neo-outset);
+  line-height: 1;
+  min-block-size: 2.75em;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform var(--dur-fast) ease,
+    filter var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+  will-change: transform;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    filter: brightness(0.98);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--focus) 40%, white),
+      var(--neo-outset);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--disabled-bg);
+    color: var(--disabled-text);
+    box-shadow: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Sizes */
+  &--s {
+    font-size: var(--text-2xs);
+    --btn-pad-y: 0.45em;
+    --btn-pad-x: 0.9em;
+    min-block-size: 2.4em;
+  }
+
+  &--m {
+    font-size: var(--text-xs);
+    --btn-pad-y: 0.55em;
+    --btn-pad-x: 1.1em;
+  }
+
+  &.is-full {
+    width: 100%;
+  }
+
+  /* Icon Buttons: quadratisch, zentriert, ohne zusätzliches Padding */
+  &--icon {
+    aspect-ratio: 1 / 1;
+    inline-size: 2.5em;
+    padding: 0;
+    display: inline-grid;
+    place-items: center;
+  }
+
+  &--icon:disabled {
+    transform: none;
+  }
+
+  /* Variants */
+  &--primary {
+    background: var(--primary);
+    color: white;
+    border-color: color-mix(in srgb, var(--primary) 70%, black);
+  }
+
+  &--success,
+  &--ok {
+    background: var(--state-ok-bg);
+    color: var(--state-ok-text);
+    border-color: var(--state-ok-border);
+  }
+
+  &--warning,
+  &--na {
+    background: var(--state-na-bg);
+    color: var(--state-na-text);
+    border-color: var(--state-na-border);
+  }
+
+  &--danger,
+  &--def {
+    background: var(--state-def-bg);
+    color: var(--state-def-text);
+    border-color: var(--state-def-border);
+  }
+
+  &--pdf {
+    background: #d62828;
+    color: #fff;
+    border-color: #a4161a;
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    box-shadow: none;
+  }
+}
+

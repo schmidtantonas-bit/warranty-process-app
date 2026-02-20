@@ -1,0 +1,150 @@
+:root {
+    /* ========= Base Colors ========= */
+    --bg: #ffffff; /* page background */
+    --fg: #141924; /* main text color */
+    --muted: #5a5b5c; /* secondary text */
+    --primary: #ff4545; /* accent / interactive */
+    --ok: #2fbf71; /* success */
+    --na: #d9a441; /* warning / neutral */
+    --def: #ea4c4c; /* error / danger */
+    --light: #ffffff; /* error / danger */
+
+    /* ── Semantik → T-Shirt Skala (die T-Shirt-Variablen hast du bereits) ── */
+    --text-caption: var(--text-3xs); /* sehr klein: Labels, Hilfetext (≈ 10–12px) */
+    --text-label: var(--text-2xs); /* UI-Labels, Meta (≈ 12–14px) */
+    --text-body: 16px; /* Fließtext & Inputs (≈ 16–18px) */
+    --text-lead: var(--text-m); /* etwas größerer Body (≈ 18–20px) */
+
+    --text-sub: var(--text-m); /* Subheadline / H4 (≈ 20–24px) */
+    --text-h4: var(--text-s); /* Seitentitel (≈ 16–18px) */
+    --text-h3: var(--text-m); /* Abschnittstitel (≈ 24–30px) */
+    --text-h2: var(--text-l); /* Bereichstitel (≈ 24–30px) */
+    --text-h1: var(--text-s); /* Seitentitel (≈ 16–18px) */
+
+    /* A4 / Container */
+    --container-max-px: 794px;
+    --container-pad-inline: 60px; /* Standard-Innenabstand Container (Desktop) */
+
+    /* Viewport-Range für Fluid Scales (320 → 794) */
+    --vw-min: 320px;
+    --vw-max: 794px;
+    --vw-range: calc(var(--vw-max) - var(--vw-min));
+
+    --text-3xs: clamp(0.625rem, 0.6rem + 0.15vw, 0.75rem);   /* ≈ 10–12px */
+    --text-2xs: clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);   /* ≈ 12–14px */
+    --text-xs: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);        /* ≈ 14–16px */
+    --text-s: clamp(1rem, 0.9rem + 0.25vw, 1.125rem);        /* ≈ 16–18px */
+    --text-m: clamp(1.125rem, 1rem + 0.35vw, 1.25rem);       /* ≈ 18–20px */
+    --text-l: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);       /* ≈ 20–24px */
+    --text-xl: clamp(1.5rem, 1.25rem + 0.8vw, 1.875rem);     /* ≈ 24–30px */
+    --text-2xl: clamp(1.875rem, 1.5rem + 1vw, 2.25rem);      /* ≈ 30–36px */
+    --text-3xl: clamp(2.25rem, 1.75rem + 1.5vw, 3rem);      /* ≈ 36–48px */
+
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-loose: 1.7;
+
+    /* Spacing (space-*) */
+    --space-2xs: clamp(
+        0.25rem,
+        calc(0.25rem + 0.125rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        0.375rem
+    );
+    --space-xs: clamp(
+        0.5rem,
+        calc(0.5rem + 0.25rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        0.75rem
+    );
+    --space-s: clamp(
+        0.75rem,
+        calc(0.75rem + 0.25rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        1rem
+    );
+    --space-m: clamp(
+        1rem,
+        calc(1rem + 0.25rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        1.25rem
+    );
+    --space-l: clamp(
+        1.5rem,
+        calc(1.5rem + 0.5rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        2rem
+    );
+    --space-xl: clamp(
+        2rem,
+        calc(2rem + 0.5rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        2.5rem
+    );
+    --space-2xl: clamp(
+        3rem,
+        calc(3rem + 1rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        4rem
+    );
+    --space-3xl: clamp(
+        4rem,
+        calc(4rem + 2rem * ((100vw - var(--vw-min)) / var(--vw-range))),
+        6rem
+    );
+    --space-xxl: var(--space-2xl);
+    --space-xxxl: var(--space-3xl);
+
+    /* ========= Surface & Shadow (for Neo-look) ========= */
+    --surface: #ffffff; /* основной фон всех карточек */
+    --surface-alt: #f8f8f8; /* чуть другой оттенок для слоёв/ховеров */
+    --shadow-light: rgba(255, 255, 255, 0.8);
+    --shadow-dark: rgba(0, 0, 0, 0.12);
+
+    /* ========= Borders & Radius ========= */
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.1);
+    --radius: 16px;
+    --border: 1px solid var(--border-color);
+
+    /* ========= Text / Icon Semantics ========= */
+    --text-primary: var(--fg);
+    --text-secondary: var(--muted);
+    --primary-secondary: var(--text-secondary);
+    --text-inverse: var(--color-white);
+    --text-on-primary: var(--color-white);
+
+    /* ========= Accent Variants ========= */
+    --primary-light: color-mix(in srgb, var(--primary) 70%, white);
+    --primary-dark: color-mix(in srgb, var(--primary) 70%, black);
+
+    /* ========= State Colors ========= */
+    --state-ok-bg: color-mix(in srgb, var(--ok) 10%, white);
+    --state-ok-border: var(--ok);
+    --state-ok-text: var(--ok);
+
+    --state-na-bg: color-mix(in srgb, var(--na) 10%, white);
+    --state-na-border: var(--na);
+    --state-na-text: var(--na);
+
+    --state-def-bg: color-mix(in srgb, var(--def) 10%, white);
+    --state-def-border: var(--def);
+    --state-def-text: var(--def);
+
+    /* ========= Neumorph Shadows ========= */
+    --neo-inset: inset 1px 1px 2px var(--shadow-dark),
+        inset -1px -1px 2px var(--shadow-light);
+    --neo-outset: 2px 2px 5px var(--shadow-dark),
+        -2px -2px 5px var(--shadow-light);
+
+    /* ========= Focus & Disabled ========= */
+    --focus: var(--primary);
+    --disabled-bg: #dfe3eb;
+    --disabled-text: #a1a8b5;
+
+    /* ========= Motion ========= */
+    /* Basis-Dauern für Animationen/Transitions */
+    --dur-fast: 120ms;   /* Hover/Fokus */
+    --dur-base: 200ms;   /* Buttons/kleine UI-Übergänge */
+    --dur-slow: 280ms;   /* Akkordeons/Panel auf/zu */
+    --dur-modal: 320ms;  /* Modals/Overlay */
+    /* Abwärtskompatibel: bisherige Variable zeigt auf Basis-Dauer */
+    --transition-duration: var(--dur-base);
+
+    /* ========= Component Sizing ========= */
+    /* Einheitliche Größe für Kamera-Button und Thumbnails */
+    --media-size: 50px;
+}

@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Twemoji Country Flags';
+  src: url('../../assets/fonts/TwemojiCountryFlags.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Twemoji Country Flags';
+  src: url('../../assets/fonts/TwemojiCountryFlags.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Twemoji Country Flags';
+  src: url('../../assets/fonts/TwemojiCountryFlags.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Usage example:
+   .use-flag-font { font-family: 'Twemoji Country Flags', system-ui, sans-serif; }
+*/

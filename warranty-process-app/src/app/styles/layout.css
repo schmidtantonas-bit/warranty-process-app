@@ -1,0 +1,29 @@
+/* Layout helpers: spacing, container */
+
+section {
+    padding-block: var(--space-s);
+}
+
+:where(#header-info, .check-section, #report, #defects, #photos) {
+    scroll-margin-top: 80px;
+}
+
+@media (max-width: 767px) {
+    section {
+        padding-inline: var(--space-xs);
+    }
+}
+
+.container {
+    padding-inline: var(--container-pad-inline);
+    padding-block: var(--space-s);
+    width: 100%;
+    max-width: var(--container-max-px);
+    margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding-inline: var(--space-s);
+    }
+}

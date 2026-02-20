@@ -1,0 +1,123 @@
+<section class="step-review-submit">
+  <header class="step-review-submit__header">
+    <h2 class="step-review-submit__title">Schritt 4: Prüfung & Abschluss</h2>
+    <p class="step-review-submit__subtitle">Alle Eingaben prüfen und bei Bedarf direkt korrigieren.</p>
+  </header>
+
+  <section class="step-review-submit__block card card--flat card--pad-m">
+    <h3 class="step-review-submit__block-title">Grunddaten</h3>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">Garantieantrag / WSC</span>
+      <input
+        class="step-review-submit__input"
+        type="text"
+        [value]="wizardState.wizardData().identification.warrantyNumber"
+        (input)="updateIdentificationField('warrantyNumber', $any($event.target).value)"
+      />
+    </label>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">Fahrzeugnummer</span>
+      <input class="step-review-submit__input" type="text" [value]="wizardState.wizardData().identification.vin" (input)="updateIdentificationField('vin', $any($event.target).value)" />
+    </label>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">Servicetechniker</span>
+      <input
+        class="step-review-submit__input"
+        type="text"
+        [value]="wizardState.wizardData().identification.technicianName"
+        (input)="updateIdentificationField('technicianName', $any($event.target).value)"
+      />
+    </label>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">E-Mail des Technikers</span>
+      <input
+        class="step-review-submit__input"
+        type="email"
+        [value]="wizardState.wizardData().identification.technicianEmail"
+        (input)="updateIdentificationField('technicianEmail', $any($event.target).value)"
+      />
+    </label>
+  </section>
+
+  <section class="step-review-submit__block card card--flat card--pad-m">
+    <h3 class="step-review-submit__block-title">Reklamiertes Bauteil</h3>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">Teilename</span>
+      <input class="step-review-submit__input" type="text" [value]="wizardState.wizardData().problemDetails.partName" (input)="updateProblemField('partName', $any($event.target).value)" />
+    </label>
+    <label class="step-review-submit__field">
+      <span class="step-review-submit__label">Fehlerbeschreibung</span>
+      <textarea
+        class="step-review-submit__textarea"
+        rows="4"
+        [value]="wizardState.wizardData().problemDetails.failureDescription"
+        (input)="updateProblemField('failureDescription', $any($event.target).value)"
+      ></textarea>
+    </label>
+
+    <div class="step-review-submit__photo-grid">
+      @for (photo of requiredPhotos; track photo.type) {
+        <article class="step-review-submit__photo-card">
+          <p class="step-review-submit__photo-title">{{ photo.label }}</p>
+
+          @if (wizardState.wizardData().problemDetails.photos[photo.type]) {
+            <img class="step-review-submit__photo step-review-submit__photo--problem" [src]="wizardState.wizardData().problemDetails.photos[photo.type]" [alt]="photo.label" />
+          } @else {
+            <div class="step-review-submit__photo-empty">Kein Foto</div>
+          }
+
+          <label class="step-review-submit__replace-btn">
+            Foto ersetzen
+            <input type="file" accept="image/*" (change)="onProblemPhotoReplace($event, photo.type)" />
+          </label>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="step-review-submit__block card card--flat card--pad-m">
+    <h3 class="step-review-submit__block-title">Arbeitsablauf</h3>
+
+    @for (step of wizardState.wizardData().workSteps; track step.id) {
+      <article class="step-review-submit__work-line">
+        <label class="step-review-submit__field">
+          <span class="step-review-submit__label">Schrittbezeichnung</span>
+          <input
+            class="step-review-submit__input"
+            type="text"
+            [value]="step.title"
+            (input)="updateWorkStepTitle(step.id, $any($event.target).value)"
+          />
+        </label>
+        <textarea
+          class="step-review-submit__textarea"
+          rows="3"
+          [value]="step.description"
+          (input)="updateWorkStepDescription(step.id, $any($event.target).value)"
+        ></textarea>
+        <label class="step-review-submit__field">
+          <span class="step-review-submit__label">Zeitaufwand (Min.)</span>
+          <input
+            class="step-review-submit__input"
+            type="number"
+            min="0"
+            [value]="step.timeSpentMinutes ?? ''"
+            (input)="updateWorkStepDuration(step.id, $any($event.target).value)"
+          />
+        </label>
+        @if (step.photos.length > 0) {
+          <div class="step-review-submit__work-photos">
+            @for (photo of step.photos; track photo; let idx = $index) {
+              <img class="step-review-submit__photo" [src]="photo" [alt]="'Foto ' + (idx + 1) + ' des Arbeitsschritts'" />
+            }
+          </div>
+        }
+      </article>
+    }
+
+    <p class="step-review-submit__work-total">
+      Gesamtzeit Arbeitsablauf: {{ wizardState.totalWorkDurationMinutes() }} Min.
+    </p>
+  </section>
+
+</section>

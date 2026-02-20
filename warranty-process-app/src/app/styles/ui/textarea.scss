@@ -1,0 +1,38 @@
+.textarea {
+  display: grid;
+  gap: var(--space-2xs);
+  color: var(--primary-secondary);
+  font-size: var(--text-label);
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 100px;
+    padding: var(--space-s);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-size: var(--text-body);
+    resize: vertical;
+    transition:
+      border-color var(--dur-fast) ease,
+      box-shadow var(--dur-fast) ease,
+      background var(--dur-fast) ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 40%, white), var(--neo-inset);
+    }
+
+    &:disabled {
+      background: var(--disabled-bg);
+      color: var(--disabled-text);
+      box-shadow: none;
+    }
+  }
+}
