@@ -38,14 +38,12 @@
     font-size: var(--text-body);
     background: var(--surface);
     color: var(--text-primary);
-    box-shadow: var(--neo-inset);
+    box-shadow: none;
 
     &:focus-visible {
       outline: none;
       border-color: var(--focus);
-      box-shadow:
-        0 0 0 2px color-mix(in srgb, var(--focus) 30%, white),
-        var(--neo-inset);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 30%, white);
     }
   }
 }
