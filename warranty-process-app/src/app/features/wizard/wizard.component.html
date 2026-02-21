@@ -26,19 +26,26 @@
     </section>
 
     <footer class="wizard__actions">
-      <button class="btn btn--ghost btn--m wizard__back-btn" type="button" (click)="previousStep()" [disabled]="currentStep() === 1">
+      <button class="btn btn--ghost btn--m wizard__back-btn" type="button" (click)="previousStep()" [disabled]="currentStep() === 1 || isSubmitting()">
         Zurück
       </button>
       @if (currentStep() < 4) {
-        <button class="btn btn--primary btn--m" type="button" (click)="nextStep()" [disabled]="!canGoNext()">
+        <button class="btn btn--primary btn--m" type="button" (click)="nextStep()" [disabled]="!canGoNext() || isSubmitting()">
           Weiter
         </button>
       }
       @if (currentStep() === 4) {
-        <button class="btn btn--ok btn--m" type="button" (click)="submit()">
-          Senden
+        <button class="btn btn--ok btn--m" type="button" (click)="submit()" [disabled]="isSubmitting()">
+          @if (isSubmitting()) {
+            Senden...
+          } @else {
+            Senden
+          }
         </button>
       }
     </footer>
+    @if (submitMessage()) {
+      <p class="wizard__submit-message">{{ submitMessage() }}</p>
+    }
   </article>
 </section>

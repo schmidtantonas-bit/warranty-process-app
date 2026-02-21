@@ -24,6 +24,8 @@ import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.com
 export class WizardComponent {
   readonly currentStep = signal<WizardStep>(1);
   @ViewChild(StepWorkProcessesComponent) private workProcessesStep?: StepWorkProcessesComponent;
+  readonly isSubmitting = signal(false);
+  readonly submitMessage = signal<string | null>(null);
 
   readonly canGoNext = computed(() => this.currentStep() < 4);
 
@@ -43,17 +45,39 @@ export class WizardComponent {
     this.currentStep.update((step) => (step < 4 ? ((step + 1) as WizardStep) : step));
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
+    if (this.isSubmitting()) {
+      return;
+    }
+
+    this.isSubmitting.set(true);
+    this.submitMessage.set(null);
+
     const payload = this.wizardState.exportPayload();
-    const blob = new Blob([payload], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+    try {
+      const response = await fetch('/api/submit-warranty', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
 
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `warranty-report-${Date.now()}.json`;
-    anchor.click();
+      const result = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        message?: string;
+      };
 
-    URL.revokeObjectURL(url);
-    console.log('Wizard payload', payload);
+      if (!response.ok || result.ok === false) {
+        const message = result.message ?? 'Übertragung fehlgeschlagen.';
+        this.submitMessage.set(message);
+        return;
+      }
+
+      this.submitMessage.set('Erfolgreich an Power Automate gesendet.');
+    } catch (error) {
+      console.error('Submit failed', error);
+      this.submitMessage.set('Netzwerkfehler bei der Übertragung.');
+    } finally {
+      this.isSubmitting.set(false);
+    }
   }
 }

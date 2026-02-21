@@ -5,8 +5,10 @@ This file is the single reference for how warranty data is exported now, what is
 
 ## Current State (as of now)
 - Frontend app: Angular 17 (`warranty-process-app`).
-- Export action: user clicks `Senden`, app generates and downloads JSON file locally.
+- Submit action: user clicks `Senden`, frontend sends JSON to `/api/submit-warranty`.
+- API bridge: `api/submit-warranty` validates payload and forwards it to `POWER_AUTOMATE_URL`.
 - Export format: German keys (mapped in `WizardStateService.exportPayload()`).
+- Payload includes `schema_version` and `meta.request_id`/`meta.exported_at_utc`.
 - Photos: embedded in JSON as `data:image/...;base64,...` strings.
 - Compression: browser-side canvas compression before storing in state.
   - Current defaults in `src/app/core/lib/image/image-compression.ts`:
@@ -55,11 +57,11 @@ This file is the single reference for how warranty data is exported now, what is
 - Move to Blob+links before production rollout or if payload/performance issues appear.
 
 ## Immediate Next Steps (when ready)
-1. Add Function endpoint for photo upload.
-2. Add Function endpoint for final JSON submit (metadata + business fields).
-3. Update Angular `submit()` to send payload to API instead of local download.
-4. Define stable JSON schema version (for Power Automate mapping).
-5. Document environment variables and role assignments in Azure.
+1. In Azure Static Web App add environment variable: `POWER_AUTOMATE_URL`.
+2. In Power Automate create HTTP-trigger flow and copy trigger URL.
+3. Verify GitHub workflow deploys both app and API (`app_location` + `api_location`).
+4. In Power Automate parse payload by schema and convert base64 photos to binary files.
+5. Add optional auth restrictions (SWA roles) when test phase ends.
 
 ## Notes
 - Local dev auto-reload was unstable in OneDrive path without polling.

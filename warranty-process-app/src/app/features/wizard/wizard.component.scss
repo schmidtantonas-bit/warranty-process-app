@@ -76,6 +76,13 @@
     border-top: 1px solid var(--border-color);
   }
 
+  &__submit-message {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
   &__back-btn {
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {

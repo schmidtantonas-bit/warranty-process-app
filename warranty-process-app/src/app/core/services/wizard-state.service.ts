@@ -127,7 +127,15 @@ export class WizardStateService {
   }
 
   private toGermanExportPayload(data: WizardData): object {
+    const requestId = crypto.randomUUID();
+    const exportedAt = new Date().toISOString();
+
     return {
+      schema_version: '1.0',
+      meta: {
+        request_id: requestId,
+        exported_at_utc: exportedAt
+      },
       grunddaten: {
         garantieantrag_wsc: data.identification.warrantyNumber,
         fahrzeugnummer: data.identification.vin,

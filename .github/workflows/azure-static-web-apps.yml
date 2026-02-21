@@ -24,7 +24,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: "/warranty-process-app"
-          api_location: ""
+          api_location: "/api"
           output_location: "dist/warranty-process-app/browser"
 
   close_pull_request_job:
