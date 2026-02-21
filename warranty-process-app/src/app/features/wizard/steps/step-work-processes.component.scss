@@ -11,22 +11,23 @@
     font-size: var(--text-xs);
   }
 
-  &__composer,
-  &__timeline {
+  &__composer {
     margin-top: var(--space-m);
     display: grid;
     gap: var(--space-s);
+    box-shadow: none;
   }
 
-  &__timeline-title {
-    margin: 0;
-    font-size: var(--text-h3);
+  &__timeline {
+    display: grid;
+    gap: var(--space-s);
   }
 
   &__row {
     display: grid;
     gap: var(--space-s);
     padding: var(--space-s);
+    padding-inline-start: var(--space-xs);
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     background: var(--surface);
@@ -38,7 +39,7 @@
 
   &__line-top {
     display: grid;
-    grid-template-columns: 48px minmax(0, 1fr) 132px;
+    grid-template-columns: minmax(0, 1fr) 132px;
     align-items: end;
     gap: var(--space-s);
   }
@@ -50,22 +51,26 @@
     gap: var(--space-s);
   }
 
-  &__number {
-    inline-size: 42px;
-    block-size: 42px;
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    color: var(--text-primary);
-    background: var(--surface-alt);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--neo-outset);
-  }
-
   &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
     font-size: var(--text-label);
     font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__step-badge {
+    inline-size: 1.4rem;
+    block-size: 1.4rem;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    font-size: 0.72rem;
+    line-height: 1;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    background: var(--surface);
     color: var(--text-primary);
   }
 
@@ -87,13 +92,13 @@
     &--title {
       inline-size: 100%;
       min-block-size: 3rem;
-      text-align: center;
+      text-align: left;
     }
 
     &--time {
       inline-size: 100%;
       max-inline-size: 132px;
-      min-block-size: 2.75em;
+      min-block-size: 3rem;
     }
   }
 
@@ -151,23 +156,14 @@
     align-self: end;
   }
 
-  &__line-bottom-action {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    min-block-size: 56px;
-
-    .btn {
-      inline-size: 132px;
-      min-block-size: 2.75em;
-      justify-content: center;
-    }
+  &__description-box {
+    display: grid;
+    gap: var(--space-2xs);
+    align-self: end;
   }
 
-  &__empty {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: var(--text-xs);
+  &__line-bottom-action {
+    display: none;
   }
 
   &__total-time {
@@ -184,8 +180,8 @@
 @media (max-width: 900px) {
   .step-work-processes {
     &__line-top {
-      grid-template-columns: 48px minmax(0, 1fr);
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: end;
     }
 
     &__line-bottom {
@@ -198,26 +194,45 @@
       justify-items: start;
     }
 
-    &__line-bottom-action {
-      grid-column: 1 / -1;
-      justify-content: flex-start;
-    }
   }
 }
 
 @media (max-width: 620px) {
   .step-work-processes {
-    &__line-top {
-      grid-template-columns: 1fr;
+    &__row--editor {
+      grid-template-columns: 56px minmax(0, 1fr);
+      grid-template-areas:
+        'description description'
+        'camera time'
+        'photos photos';
+      align-items: end;
     }
 
+    &__line-top,
     &__line-bottom {
-      grid-template-columns: 1fr;
+      display: contents;
+    }
+
+    &__description-box {
+      grid-area: description;
+    }
+
+    &__time-box {
+      grid-area: time;
+      justify-items: end;
+      align-self: end;
     }
 
     &__photo-trigger {
-      inline-size: 56px;
-      block-size: 56px;
+      grid-area: camera;
+      align-self: end;
+      justify-self: start;
     }
+
+    &__photos-strip {
+      grid-area: photos;
+      margin-top: var(--space-2xs);
+    }
+
   }
 }

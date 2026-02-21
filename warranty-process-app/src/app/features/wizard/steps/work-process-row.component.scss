@@ -1,0 +1,113 @@
+.work-process-row {
+  display: grid;
+  gap: var(--space-s);
+  padding: var(--space-s);
+  padding-inline-start: var(--space-xs);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+
+  &__line-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 132px;
+    align-items: end;
+    gap: var(--space-s);
+  }
+
+  &__description-box,
+  &__time-box {
+    display: grid;
+    gap: var(--space-2xs);
+    align-self: end;
+  }
+
+  &__time-box {
+    justify-items: end;
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--text-label);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__step-badge {
+    inline-size: 1.4rem;
+    block-size: 1.4rem;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    font-size: 0.72rem;
+    line-height: 1;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    background: var(--surface);
+    color: var(--text-primary);
+  }
+
+  &__input {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--space-s);
+    font-size: var(--text-body);
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: none;
+
+    &--title {
+      inline-size: 100%;
+      min-block-size: 3rem;
+      text-align: left;
+    }
+
+    &--time {
+      inline-size: 100%;
+      max-inline-size: 132px;
+      min-block-size: 3rem;
+    }
+  }
+
+  &__photos-strip {
+    block-size: 56px;
+    min-block-size: 56px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    overflow-x: auto;
+    padding: 0 var(--space-2xs);
+    border-radius: var(--radius);
+    border: 1px dashed var(--border-color);
+    background: var(--surface-alt);
+  }
+
+  &__thumb {
+    inline-size: 56px;
+    block-size: 56px;
+    flex: 0 0 auto;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    background: var(--surface);
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 900px) {
+  .work-process-row {
+    &__line-top {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: end;
+    }
+
+    &__time-box {
+      justify-items: start;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<article class="work-process-row">
+  <div class="work-process-row__line-top">
+    <div class="work-process-row__description-box">
+      <label class="work-process-row__label">
+        Arbeitsschritt
+        <span class="work-process-row__step-badge">{{ stepNumber }}</span>
+      </label>
+      <input class="work-process-row__input work-process-row__input--title" type="text" [value]="step.description" readonly />
+    </div>
+    <div class="work-process-row__time-box">
+      <label class="work-process-row__label">Zeit (Min.)</label>
+      <input class="work-process-row__input work-process-row__input--time" type="number" [value]="step.timeSpentMinutes ?? ''" readonly />
+    </div>
+  </div>
+
+  @if (step.photos.length > 0) {
+    <div class="work-process-row__photos-strip">
+      @for (photo of step.photos; track photo; let photoIndex = $index) {
+        <img class="work-process-row__thumb" [src]="photo" [alt]="'Foto ' + (photoIndex + 1)" />
+      }
+    </div>
+  }
+
+  <div class="work-process-row__actions">
+    <button class="btn btn--danger btn--s" type="button" (click)="removeStep()">Schritt löschen</button>
+  </div>
+</article>

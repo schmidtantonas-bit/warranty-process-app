@@ -5,15 +5,28 @@
   </header>
 
   <form [formGroup]="addForm" class="step-work-processes__composer card card--pad-m">
+    @if (wizardState.wizardData().workSteps.length > 0) {
+      <section class="step-work-processes__timeline">
+        @for (step of wizardState.wizardData().workSteps; track step.id; let idx = $index) {
+          <app-work-process-row [step]="step" [stepNumber]="idx + 1" (remove)="removeStep($event)"></app-work-process-row>
+        }
+      </section>
+    }
+
     <article class="step-work-processes__row step-work-processes__row--editor">
       <div class="step-work-processes__line-top">
-        <div class="step-work-processes__number">{{ wizardState.wizardData().workSteps.length + 1 }}</div>
-        <input
-          class="step-work-processes__input step-work-processes__input--title"
-          type="text"
-          formControlName="description"
-          placeholder="beschreibe was gemacht wurde"
-        />
+        <div class="step-work-processes__description-box">
+          <label class="step-work-processes__label">
+            Arbeitsschritt
+            <span class="step-work-processes__step-badge">{{ wizardState.wizardData().workSteps.length + 1 }}</span>
+          </label>
+          <input
+            class="step-work-processes__input step-work-processes__input--title"
+            type="text"
+            formControlName="description"
+            placeholder="beschreibe was gemacht wurde"
+          />
+        </div>
         <div class="step-work-processes__time-box">
           <label class="step-work-processes__label">Zeit (Min.)</label>
           <input class="step-work-processes__input step-work-processes__input--time" type="number" min="0" formControlName="timeSpentMinutes" />

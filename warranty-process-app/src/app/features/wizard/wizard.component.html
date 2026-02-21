@@ -26,7 +26,7 @@
     </section>
 
     <footer class="wizard__actions">
-      <button class="btn btn--ghost btn--m" type="button" (click)="previousStep()" [disabled]="currentStep() === 1">
+      <button class="btn btn--ghost btn--m wizard__back-btn" type="button" (click)="previousStep()" [disabled]="currentStep() === 1">
         Zurück
       </button>
       @if (currentStep() < 4) {

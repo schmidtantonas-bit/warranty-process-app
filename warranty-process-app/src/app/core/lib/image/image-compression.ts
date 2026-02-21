@@ -7,7 +7,7 @@ export interface ImageCompressionOptions {
 
 const defaultOptions: Required<ImageCompressionOptions> = {
   maxWidth: 1600,
-  maxHeight: 1600,
+  maxHeight: 1080,
   quality: 0.82,
   mimeType: 'image/jpeg'
 };

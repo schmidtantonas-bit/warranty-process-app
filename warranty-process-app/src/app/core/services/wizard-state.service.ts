@@ -123,6 +123,34 @@ export class WizardStateService {
   }
 
   exportPayload(): string {
-    return JSON.stringify(this.state(), null, 2);
+    return JSON.stringify(this.toGermanExportPayload(this.state()), null, 2);
+  }
+
+  private toGermanExportPayload(data: WizardData): object {
+    return {
+      grunddaten: {
+        garantieantrag_wsc: data.identification.warrantyNumber,
+        fahrzeugnummer: data.identification.vin,
+        servicetechniker: data.identification.technicianName,
+        techniker_email: data.identification.technicianEmail
+      },
+      reklamiertes_bauteil: {
+        teilename: data.problemDetails.partName,
+        fehlerbeschreibung: data.problemDetails.failureDescription,
+        pflichtfotos: {
+          foto_seriennummer: data.problemDetails.photos.serialNumberPhoto,
+          foto_gesamtansicht_bauteil: data.problemDetails.photos.overallPartPhoto,
+          foto_nahaufnahme_schaden: data.problemDetails.photos.damageCloseupPhoto
+        }
+      },
+      arbeitsablauf: data.workSteps.map((step: WorkProcessStep) => ({
+        schritt_id: step.id,
+        schritt_titel: step.title,
+        schritt_beschreibung: step.description,
+        fotos: step.photos,
+        zeitaufwand_minuten: step.timeSpentMinutes,
+        erstellt_am: step.createdAt
+      }))
+    };
   }
 }

@@ -1,6 +1,7 @@
 :host {
   display: block;
   min-height: 100dvh;
+  overflow-x: clip;
 }
 
 .wizard {
@@ -14,8 +15,8 @@
   padding-bottom: var(--space-l);
 
   &__card {
-    --wizard-pad-block: clamp(1.8rem, 1.2rem + 1.4vw, 3rem);
-    --wizard-pad-inline: clamp(1.3rem, 1rem + 1.1vw, 2.4rem);
+    --wizard-pad-block: clamp(1rem, 0.7rem + 1.1vw, 2rem);
+    --wizard-pad-inline: clamp(0.85rem, 0.45rem + 2vw, 1.4rem);
 
     display: grid;
     gap: var(--space-m);
@@ -74,22 +75,26 @@
     padding-top: var(--space-xs);
     border-top: 1px solid var(--border-color);
   }
+
+  &__back-btn {
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background: color-mix(in srgb, var(--surface) 78%, white);
+      border-color: color-mix(in srgb, var(--border-strong) 72%, var(--focus));
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--focus) 22%, transparent),
+        var(--neo-outset);
+      transform: translateY(-1px);
+      filter: none;
+    }
+  }
 }
 
 @media (max-width: 767px) {
   .wizard {
-    min-height: auto;
-    padding-top: var(--space-s);
-    padding-bottom: var(--space-s);
-
-    &__card {
-      --wizard-pad-block: var(--space-m);
-      --wizard-pad-inline: var(--space-m);
-      padding: var(--wizard-pad-block) var(--wizard-pad-inline);
-    }
-
     &__title {
-      font-size: var(--text-m);
+      font-size: var(--text-s);
+      line-height: 1.2;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, ViewChild, computed, signal } from '@angular/core';
 
 import { WizardStep } from '../../core/models/wizard-data.model';
 import { WizardStateService } from '../../core/services/wizard-state.service';
@@ -23,6 +23,7 @@ import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.com
 })
 export class WizardComponent {
   readonly currentStep = signal<WizardStep>(1);
+  @ViewChild(StepWorkProcessesComponent) private workProcessesStep?: StepWorkProcessesComponent;
 
   readonly canGoNext = computed(() => this.currentStep() < 4);
 
@@ -35,6 +36,9 @@ export class WizardComponent {
   nextStep(): void {
     if (!this.canGoNext()) {
       return;
+    }
+    if (this.currentStep() === 3) {
+      this.workProcessesStep?.persistDraftStep();
     }
     this.currentStep.update((step) => (step < 4 ? ((step + 1) as WizardStep) : step));
   }
