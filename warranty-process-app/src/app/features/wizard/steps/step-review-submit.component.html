@@ -76,13 +76,7 @@
     @for (step of wizardState.wizardData().workSteps; track step.id) {
       <article class="step-review-submit__work-line">
         <label class="step-review-submit__field">
-          <span class="step-review-submit__label">Schrittbezeichnung</span>
-          <input
-            class="step-review-submit__input"
-            type="text"
-            [value]="step.title"
-            readonly
-          />
+          <span class="step-review-submit__label">Arbeitsschritt</span>
         </label>
         <textarea
           class="step-review-submit__textarea"

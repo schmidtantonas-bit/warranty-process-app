@@ -30,7 +30,7 @@
     padding-inline: var(--wizard-pad-inline);
 
     > app-progress-bar {
-      margin-inline: calc(-1 * var(--wizard-pad-inline));
+      margin-inline: calc(-1 * (var(--wizard-pad-inline) - var(--space-xs)));
     }
   }
 
