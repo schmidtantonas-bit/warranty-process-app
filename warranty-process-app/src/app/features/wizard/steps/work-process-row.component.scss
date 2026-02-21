@@ -101,6 +101,8 @@
 
 @media (max-width: 900px) {
   .work-process-row {
+    padding-inline: var(--space-xs);
+
     &__line-top {
       grid-template-columns: minmax(0, 1fr);
       align-items: end;

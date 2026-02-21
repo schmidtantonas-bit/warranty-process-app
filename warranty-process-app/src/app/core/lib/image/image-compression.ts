@@ -111,3 +111,4 @@ function blobToDataUrl(blob: Blob): Promise<string> {
     reader.readAsDataURL(blob);
   });
 }
+ 

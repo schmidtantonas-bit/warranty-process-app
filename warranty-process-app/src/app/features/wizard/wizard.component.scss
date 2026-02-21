@@ -40,6 +40,8 @@
     justify-content: space-between;
     gap: var(--space-m);
     background: transparent;
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-color);
   }
 
   &__logo {
@@ -99,9 +101,17 @@
 
 @media (max-width: 767px) {
   .wizard {
+    &__card {
+      --wizard-pad-inline: var(--space-xs);
+    }
+
     &__title {
       font-size: var(--text-s);
       line-height: 1.2;
+    }
+
+    :where(.card.card--pad-m, .card.card--pad-s) {
+      padding-inline: var(--space-xs);
     }
   }
 }
